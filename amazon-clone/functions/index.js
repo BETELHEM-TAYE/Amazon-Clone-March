@@ -1,14 +1,12 @@
-
-
-const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
+/* eslint-env node */
+/* eslint-disable no-undef */
+const { onRequest } = require("firebase-functions/v2/https");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const stripe = require("stripe")(process.env.STRIPE_KEY)
-
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const app = express();
 app.use(cors({ origin: true }));
@@ -30,7 +28,7 @@ app.post("/payment/create", async (req, res) => {
     res.status(201).json({
       clientSecret: paymentIntent.client_secret,
     });
-    console.log(clientSecret)
+    console.log(paymentIntent.client_secret);
   } else {
     res.status(403).json({
       message: "Total must be greater than 0",
@@ -38,5 +36,4 @@ app.post("/payment/create", async (req, res) => {
   }
 });
 
-
-exports.api=onRequest(app)
+exports.api = onRequest(app);
