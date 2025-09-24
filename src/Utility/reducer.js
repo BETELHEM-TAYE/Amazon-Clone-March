@@ -1,5 +1,5 @@
 // import { useReducer } from "react";
-import { Type } from "./action.type";
+import { Type } from "./actiontype.jsx";
 
 export const initialState = {
   basket: [],

@@ -4,7 +4,7 @@ import CuurencyFormat from "../CurrencyFormat/CurrencFormat";
 import classes from "./Product.module.css";
 import { Link } from "react-router-dom";
 import { DataContext } from "../DataProvider/DataProvider";
-import { Type } from "../../Utility/action.type";
+import { Type } from "../../Utility/actiontype";
 
 function ProductCard({ product, flex, renderDesc, renderAdd }) {
   const { image, id, title, rating, price, description } = product;

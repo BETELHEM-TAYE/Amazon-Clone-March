@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import Layout from "../../Components/Layout/Layout";
-import { db } from "../../utility/firebase";
+import LayOut from "../../Components/LayOut/LayOut";
+import { db } from "../../Utility/firebase";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import ProductCard from "../../Components/Product/ProductCard";
-import classes from "./orders.module.css";
+import classes from "./Orders.module.css";
 function Orders() {
   const [{ user }, dispatch] = useContext(DataContext);
   console.log(user);
@@ -28,7 +28,7 @@ function Orders() {
     }
   }, []);
   return (
-    <Layout>
+    <LayOut>
       <br />
       <br />
       <br />
@@ -54,7 +54,7 @@ function Orders() {
           </div>
         </div>
       </section>
-    </Layout>
+    </LayOut>
   );
 }
 

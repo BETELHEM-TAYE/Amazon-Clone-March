@@ -1,20 +1,20 @@
-import React from "react";
-import { useContext } from "react";
-import Layout from "../../Components/LayOut/LayOut";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import LayOut from "../../Components/LayOut/LayOut";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import ProductCard from "../../Components/Product/ProductCard";
 import CurrencyFormat from "../../Components/CurrencyFormat/CurrencFormat";
-import { Link } from "react-router-dom";
 import classes from "./Cart.module.css";
-import { Type } from "../../Utility/action.type.js";
+import { Type } from "../../Utility/actiontype.jsx";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 
 function Cart() {
-  const [{ basket }, dispatch] = useContext(DataContext);
+  const [{ basket, user }, dispatch] = useContext(DataContext);
   const total = basket.reduce((amount, item) => {
     return item.price * item.amount + amount;
   }, 0);
+  const navigate = useNavigate();
 
   const increment = (item) => {
     dispatch({
@@ -22,6 +22,7 @@ function Cart() {
       item,
     });
   };
+
   const decrement = (id) => {
     dispatch({
       type: Type.REMOVE_FROM_BASKET,
@@ -29,8 +30,16 @@ function Cart() {
     });
   };
 
+  const handleCheckout = () => {
+    if (user) {
+      navigate("/payment");
+    } else {
+      navigate("/auth/signup", { state: { redirect: "/payment" } });
+    }
+  };
+
   return (
-    <Layout>
+    <LayOut>
       <section className={classes.container}>
         <div className={classes.cart_container}>
           <h2>Hello</h2>
@@ -80,12 +89,14 @@ function Cart() {
                 <input type="checkbox" />
                 <small>This order contains a gift</small>
               </span>
-              <Link to="/payments">Continue to checkout</Link>
+              <button onClick={handleCheckout} className={classes.btn}>
+                Continue to Checkout
+              </button>
             </div>
           )}
         </div>
       </section>
-    </Layout>
+    </LayOut>
   );
 }
 
