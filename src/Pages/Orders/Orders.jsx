@@ -5,7 +5,7 @@ import { DataContext } from "../../Components/DataProvider/DataProvider";
 import ProductCard from "../../Components/Product/ProductCard";
 import classes from "./Orders.module.css";
 function Orders() {
-  const [{ user }, dispatch] = useContext(DataContext);
+  const [{ user }, _dispatch] = useContext(DataContext);
   console.log(user);
 
   const [orders, setorders] = useState([]);

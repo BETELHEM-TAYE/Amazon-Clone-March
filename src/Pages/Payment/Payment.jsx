@@ -1,15 +1,15 @@
-import React, { useContext, useState } from 'react';
-import LayOut from '../../Components/LayOut/LayOut';
-import classes from './Payment.module.css'; // Corrected from Classes
-import { DataContext } from '../../Components/DataProvider/DataProvider';
-import ProductCard from '../../Components/Product/ProductCard';
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
-import CurrencyFormat from '../../Components/CurrencyFormat/CurrencFormat';
-import { axiosInstance } from '../../Api/axios';
-import { ClipLoader } from 'react-spinners';
-import { db } from '../../Utility/firebase';
-import { useNavigate } from 'react-router-dom';
-import { Type } from '../../Utility/actiontype.jsx';
+import React, { useContext, useState } from "react";
+import LayOut from "../../Components/LayOut/LayOut";
+import classes from "./Payment.module.css"; // Corrected from Classes
+import { DataContext } from "../../Components/DataProvider/DataProvider";
+import ProductCard from "../../Components/Product/ProductCard";
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import CurrencyFormat from "../../Components/CurrencyFormat/CurrencFormat";
+import { axiosInstance } from "../../Api/axios";
+import { ClipLoader } from "react-spinners";
+import { db } from "../../Utility/firebase";
+import { useNavigate } from "react-router-dom";
+import { Type } from "../../Utility/actiontype";
 
 function Payment() {
   const [{ user, basket }, dispatch] = useContext(DataContext);
@@ -27,7 +27,7 @@ function Payment() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    e?.error ? setCardError(e?.error?.message) : setCardError('');
+    e?.error ? setCardError(e?.error?.message) : setCardError("");
   };
 
   const handlePayment = async (e) => {
@@ -36,7 +36,7 @@ function Payment() {
     try {
       setProcessing(true);
       const response = await axiosInstance({
-        method: 'POST',
+        method: "POST",
         url: `/payment/create?total=${total * 100}`,
       });
 
@@ -49,9 +49,9 @@ function Payment() {
       });
 
       await db
-        .collection('users')
+        .collection("users")
         .doc(user.uid)
-        .collection('orders')
+        .collection("orders")
         .doc(paymentIntent.id)
         .set({
           basket: basket,
@@ -62,7 +62,7 @@ function Payment() {
       dispatch({ type: Type.EMPTY_BASKET });
 
       setProcessing(false);
-      navigate('/orders', { state: { msg: 'You have placed a new order' } });
+      navigate("/orders", { state: { msg: "You have placed a new order" } });
     } catch (error) {
       console.log(error);
       setProcessing(false);
@@ -96,12 +96,14 @@ function Payment() {
           <div className={classes.payment_card_container}>
             <div className={classes.payment_details}>
               <form onSubmit={handlePayment}>
-                {cardError && <small style={{ color: 'red' }}>{cardError}</small>}
+                {cardError && (
+                  <small style={{ color: "red" }}>{cardError}</small>
+                )}
                 <CardElement onChange={handleChange} />
 
                 <div className={classes.payment_price}>
                   <div>
-                    <span style={{ display: 'flex', gap: '10px' }}>
+                    <span style={{ display: "flex", gap: "10px" }}>
                       <p>Total Order |</p>
                       <CurrencyFormat amount={total} />
                     </span>
@@ -113,7 +115,7 @@ function Payment() {
                         <p>Please wait...</p>
                       </div>
                     ) : (
-                      'Pay Now'
+                      "Pay Now"
                     )}
                   </button>
                 </div>

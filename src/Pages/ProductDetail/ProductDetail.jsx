@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../Components/LayOut/LayOut";
+import LayOut from "../../Components/LayOut/LayOut";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { producturl } from "../../Api/endPoints";
 import ProductCard from "../../Components/Product/ProductCard";
 
-import Loder from "../../Components/Loder/Loder";
+import Loader from "../../Components/Loader/Loader";
 
 function ProductDetail() {
   const [product, setproduct] = useState({});
@@ -26,9 +26,9 @@ function ProductDetail() {
       });
   }, [productId]);
   return (
-    <Layout>
+    <LayOut>
       {isLoading ? (
-        <Loder />
+        <Loader />
       ) : (
         <ProductCard
           product={product}
@@ -37,7 +37,7 @@ function ProductDetail() {
           renderAdd={true}
         />
       )}
-    </Layout>
+    </LayOut>
   );
 }
 
