@@ -1,19 +1,15 @@
-.hero_img {
-  position: relative;
-  display: inline-block; /* ensures the container wraps the image */
+.hero_img{
+    position: relative;
 }
-
 .hero_img::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 300px;
-  background: linear-gradient(
-    to bottom,
-    rgba(225, 225, 225, 0),
-    rgba(255, 255, 255, 1)
-  );
-  z-index: 2; /* ensure overlay is above the image */
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 300px;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(225, 225, 225, 0),
+        rgba(225, 225, 225, 0.75) 
+    );
 }

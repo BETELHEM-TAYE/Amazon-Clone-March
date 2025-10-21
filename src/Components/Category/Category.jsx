@@ -1,15 +1,22 @@
-import { categoryInfos } from "./CategoryFullInfo";
-import CategoryCard from "./CategoryCard";
-import classes from "./Category.module.css";
+import {categoryInfo} from "./CategoryFullinfo"
 
+import classes from "./category.module.css"
+import CategoryCard from './CategoryCard';
 function Category() {
   return (
-    <section className={classes.category_container}>
-      {categoryInfos.map((infos, index) => {
-        return <CategoryCard key={index} data={infos} />;
-      })}
-    </section>
+    <div>
+      <section className={classes.Category_container}>
+        {
+        categoryInfo.map((infos,i)=>
+          
+          
+           < CategoryCard key={i} data = {infos}/>
+        )
+        }
+        </section>
+        {/* {console.log(categoryInfo)} */}
+    </div>
   );
 }
 
-export default Category;
+export default Category

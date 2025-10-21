@@ -1,31 +1,27 @@
-import classes from "./Header.module.css";
+import { useContext } from 'react'
+import { FaSearch } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
-import { IoSearch } from "react-icons/io5";
+import classes from "./header.module.css"
 import { BiCart } from "react-icons/bi";
-import LowerHeader from "./LowerHeader";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { DataContext } from "../DataProvider/DataProvider";
-
-function Header() {
-  //consume the value
-  const [{ basket }] = useContext(DataContext);
-  // console.log(basket);
-  //use reduce function and add them to the previous
-  const totalItem = basket?.reduce((amount, item) => {
-    return item.amount + amount;
-  }, 0);
-
+import LowerHeader from './LowerHeader';
+import {Link} from "react-router-dom"
+import { DataContext } from '../DataProvider/DataProvider';
+import{auth} from "../../utility/firebase"
+LowerHeader
+const Header = () => {
+  const [{basket,user}]=useContext(DataContext)
+  const totalItem=basket?.reduce((amount,item)=>{
+    return item.amount+amount
+  },0)
   return (
     <>
       <section className={classes.fixed}>
         <div className={classes.header_container}>
           <div className={classes.logo_container}>
-            {/* logo */}
             <Link to="/">
               <img
                 src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
-                alt="amazon log"
+                alt="amazon logo"
               />
             </Link>
             {/* delivery */}
@@ -33,65 +29,64 @@ function Header() {
               <span>
                 <CiLocationOn />
               </span>
-              {/* icon */}
               <div>
-                <p>Delivered to</p>
+                <p>Deliverd to</p>
                 <span>Ethiopia</span>
               </div>
             </div>
           </div>
-
-          {/* search */}
           <div className={classes.search}>
+            {/* sarch */}
             <select name="" id="">
               <option value="">All</option>
             </select>
-            <input type="text" placeholder="search products" />
-            <IoSearch size={38} />
+            <input type="text" name="" id="" placeholder="search product" />
+            <FaSearch size={38} />
           </div>
-
-          {/* right side link */}
           <div className={classes.order_container}>
-            <Link className={classes.language}>
+            <Link t0="" className={classes.language}>
               <img
-                src="https://cdn.britannica.com/33/4833-004-828A9A84/Flag-United-States-of-America.jpg"
+                src="https://upload.wikimedia.org/wikipedia/commons/d/de/Flag_of_the_United_States.png"
                 alt=""
               />
-              <select name="" id="">
-                <option value="">EN</option>
+              <select>
+                <option value="">En</option>
               </select>
             </Link>
 
-            {/* three componenets */}
-            {/* signIN */}
-            <Link to="./">
+            {/* three component */}
+            <Link to={!user && "/auth"}>
               <div>
-                <>
-                  <p>Hello, Sign In</p>
-                  <span>Account & Lists</span>
-                </>
+                {user ? (
+                  <>
+                    <p>Hello {user?.email?.split("@")[0]}</p>
+                    <span onClick={()=>auth.signOut()}>Sign Out</span>
+                  </>
+                ) : (
+                  <>
+                    <p> Hello Sign In</p>
+                    <span>Account & List</span>
+
+                  </>
+                )}
               </div>
             </Link>
             {/* orders */}
             <Link to="/orders">
-              <div>
-                <p>returns</p>
-                <span>& Orders</span>
-              </div>
+              <p>returns</p>
+              <span>& orders</span>
             </Link>
             {/* cart */}
             <Link to="/cart" className={classes.cart}>
               <BiCart size={35} />
-              {/* it can use direct array property */}
-              {/* <span>{basket.length}</span> */}
               <span>{totalItem}</span>
             </Link>
           </div>
         </div>
-        <LowerHeader />
       </section>
+      <LowerHeader />
     </>
   );
 }
 
-export default Header;
+export default Header

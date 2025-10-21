@@ -1,13 +1,17 @@
-import React from "react";
-import Header from "../Header/Header";
+import Header from '../Header/Header'
+import PropTypes from 'prop-types'
 
-function LayOut({ children }) {
+function Layout({children}) {
   return (
     <div>
-      <Header />
+      <Header/>
       {children}
     </div>
-  );
+  )
 }
 
-export default LayOut;
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default Layout

@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import LayOut from "../../Components/LayOut/LayOut";
-import { db } from "../../Utility/firebase";
+import { useContext, useEffect, useState } from "react";
+import Layout from "../../Components/Layout/Layout";
+import { db } from "../../utility/firebase";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import ProductCard from "../../Components/Product/ProductCard";
-import classes from "./Orders.module.css";
+import classes from "./orders.module.css";
 function Orders() {
-  const [{ user }, _dispatch] = useContext(DataContext);
+  const [{ user }] = useContext(DataContext);
   console.log(user);
 
   const [orders, setorders] = useState([]);
@@ -26,16 +26,16 @@ function Orders() {
     } else {
       setorders([]);
     }
-  }, []);
+  }, [user]);
   return (
-    <LayOut>
+    <Layout>
       <br />
       <br />
       <br />
       <section className={classes.container}>
         <div className={classes.orders__container}>
           <h2>Your Orders</h2>
-          {orders?.length == 0 && <div> you don't have orders</div>}
+          {orders?.length == 0 && <div> you don&apos;t have orders</div>}
           {/* Ordered items */}
           <div>
             {orders?.map((eachOrder, i) => {
@@ -54,7 +54,7 @@ function Orders() {
           </div>
         </div>
       </section>
-    </LayOut>
+    </Layout>
   );
 }
 
