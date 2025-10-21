@@ -39,7 +39,6 @@ function Payment() {
         url: `/payment/create?total=${total * 100}`,
       });
 
-      console.log(response.data);
       const clientSecret = response?.data?.clientSecret;
 
       // 2. Client side (react side confirmation)
@@ -51,8 +50,6 @@ function Payment() {
           },
         }
       );
-
-      console.log(paymentIntent);
 
       if (error) {
         setCarderror(error.message);
@@ -78,7 +75,6 @@ function Payment() {
       setProcessing(false);
       navigate("/orders", { state: { msg: "you have placed new order" } });
     } catch (error) {
-      console.log(error);
       setProcessing(false);
     }
   };

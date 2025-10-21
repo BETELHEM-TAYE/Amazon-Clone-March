@@ -6,7 +6,6 @@ import ProductCard from "../../Components/Product/ProductCard";
 import classes from "./orders.module.css";
 function Orders() {
   const [{ user }] = useContext(DataContext);
-  console.log(user);
 
   const [orders, setorders] = useState([]);
   useEffect(() => {

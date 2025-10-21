@@ -1,29 +1,30 @@
-import { useContext } from 'react'
+import { useContext } from "react";
 import { Rating } from "@mui/material";
-import CurrencyFormat from './CurrencyFormat/CurrencyFormat';
-import classes from './product.module.css'
-import {Link }from 'react-router-dom';
-import { DataContext } from '../DataProvider/DataProvider';
-import { Type } from '../../utility/actiontype';
-import PropTypes from 'prop-types';
+import CurrencyFormat from "./CurrencyFormat/CurrencyFormat";
+import classes from "./product.module.css";
+import { Link } from "react-router-dom";
+import { DataContext } from "../DataProvider/DataProvider";
+import { Type } from "../../utility/actiontype";
+import PropTypes from "prop-types";
 
-function ProductCard({product,flex,renderDesc ,renderAdd}) {
-    const { image ,title, id, rating ,price,description } = product;
+function ProductCard({ product, flex, renderDesc, renderAdd }) {
+  const { image, title, id, rating, price, description } = product;
 
-       const [state ,dispatch]= useContext(DataContext)
-       console.log(state)
-      const addToCart=()=>{
-        dispatch ({
-          type: Type.ADD_TO_BASKET,
-          item : {
-            image ,title, id, rating ,price,description
+  const [state, dispatch] = useContext(DataContext);
+  const addToCart = () => {
+    dispatch({
+      type: Type.ADD_TO_BASKET,
+      item: {
+        image,
+        title,
+        id,
+        rating,
+        price,
+        description,
+      },
+    });
+  };
 
-          }
-        })
-      }
-
-
-   
   return (
     <div
       className={`${classes.card_container} ${
@@ -70,4 +71,4 @@ ProductCard.propTypes = {
   renderAdd: PropTypes.bool,
 };
 
-export default ProductCard
+export default ProductCard;
