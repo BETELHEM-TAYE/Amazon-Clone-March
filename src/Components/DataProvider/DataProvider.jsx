@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import PropTypes from "prop-types";
-import { reducer, initialState } from "../../utility/reducer";
+import { reducer, initialState } from "../../Utility/reducer";
 import { DataContext } from "./DataContext";
 
 export const DataProvider = ({ children }) => {

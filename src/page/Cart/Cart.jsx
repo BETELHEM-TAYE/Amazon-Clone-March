@@ -1,36 +1,38 @@
-import { useContext } from 'react'
-import Layout from '../../Components/Layout/Layout'
+import { useContext } from "react";
+import Layout from "../../Components/Layout/Layout";
 
-import { DataContext } from '../../Components/DataProvider/DataProvider'
-import ProductCard from '../../Components/Product/ProductCard'
-import CurrencyFormat from '../../Components/Product/CurrencyFormat/CurrencyFormat';
-import { Link } from 'react-router-dom';
-import classes from "./cart.module.css"
-import { Type } from '../../utility/actiontype';
-import { IoIosArrowDown } from "react-icons/io";import { IoIosArrowUp } from "react-icons/io";
+import { DataContext } from "../../Components/DataProvider/DataContext";
+import ProductCard from "../../Components/Product/ProductCard";
+import CurrencyFormat from "../../Components/Product/CurrencyFormat/CurrencyFormat";
+import { Link } from "react-router-dom";
+import classes from "./cart.module.css";
+import { Type } from "../../utility/actiontype";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 
 function Cart() {
- const [{basket},dispatch]=useContext(DataContext);
- const total=basket.reduce((amount,item)=>{
-   return item.price*item.amount+amount
- },0)
-const increment =(item)=>{
-  dispatch({
-    type:Type.ADD_TO_BASKET,
-    item
-})
-}
-const decrement =(id)=>{
-  dispatch({
-    type:Type.REMOVE_FROM_BASEKET,
-    id
-  })
-}
-
-
+  const [{ basket }, dispatch] = useContext(DataContext);
+  const total = basket.reduce((amount, item) => {
+    return item.price * item.amount + amount;
+  }, 0);
+  const increment = (item) => {
+    dispatch({
+      type: Type.ADD_TO_BASKET,
+      item,
+    });
+  };
+  const decrement = (id) => {
+    dispatch({
+      type: Type.REMOVE_FROM_BASEKET,
+      id,
+    });
+  };
 
   return (
-    <Layout><br /><br /><br />
+    <Layout>
+      <br />
+      <br />
+      <br />
       <section className={classes.container}>
         <div className={classes.cart_container}>
           <br />
@@ -89,4 +91,4 @@ const decrement =(id)=>{
   );
 }
 
-export default Cart
+export default Cart;

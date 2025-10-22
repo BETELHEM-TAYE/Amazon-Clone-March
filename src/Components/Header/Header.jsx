@@ -1,18 +1,18 @@
-import { useContext } from 'react'
+import { useContext } from "react";
 import { FaSearch } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
-import classes from "./header.module.css"
+import classes from "./header.module.css";
 import { BiCart } from "react-icons/bi";
-import LowerHeader from './LowerHeader';
-import {Link} from "react-router-dom"
-import { DataContext } from '../DataProvider/DataProvider';
-import{auth} from "../../utility/firebase"
-LowerHeader
+import LowerHeader from "./LowerHeader";
+import { Link } from "react-router-dom";
+import { DataContext } from "../DataProvider/DataContext";
+import { auth } from "../../utility/firebase";
+LowerHeader;
 const Header = () => {
-  const [{basket,user}]=useContext(DataContext)
-  const totalItem=basket?.reduce((amount,item)=>{
-    return item.amount+amount
-  },0)
+  const [{ basket, user }] = useContext(DataContext);
+  const totalItem = basket?.reduce((amount, item) => {
+    return item.amount + amount;
+  }, 0);
   return (
     <>
       <section className={classes.fixed}>
@@ -60,13 +60,12 @@ const Header = () => {
                 {user ? (
                   <>
                     <p>Hello {user?.email?.split("@")[0]}</p>
-                    <span onClick={()=>auth.signOut()}>Sign Out</span>
+                    <span onClick={() => auth.signOut()}>Sign Out</span>
                   </>
                 ) : (
                   <>
                     <p> Hello Sign In</p>
                     <span>Account & List</span>
-
                   </>
                 )}
               </div>
@@ -87,6 +86,6 @@ const Header = () => {
       <LowerHeader />
     </>
   );
-}
+};
 
-export default Header
+export default Header;
