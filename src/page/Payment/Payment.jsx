@@ -7,7 +7,7 @@ import { useElements, useStripe, CardElement } from "@stripe/react-stripe-js";
 import CurrencyFormat from "../../Components/Product/CurrencyFormat/CurrencyFormat";
 import { axiosInstance } from "../../API/axios";
 import { ClipLoader } from "react-spinners";
-import { db } from "../../utility/firebase";
+import { db } from "../../Utility/firebase";
 import { useNavigate } from "react-router-dom";
 import { Type } from "../../Utility/actiontype";
 

@@ -4,8 +4,8 @@ import "./App.css";
 
 import Routering from "./Router";
 import { DataContext } from "./Components/DataProvider/DataContext";
-import { auth } from "./utility/firebase";
-import { Type } from "./utility/actiontype";
+import { auth } from "./Utility/firebase";
+import { Type } from "./Utility/actiontype";
 
 function App() {
   const [, dispatch] = useContext(DataContext);
