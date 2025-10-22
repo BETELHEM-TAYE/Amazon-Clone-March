@@ -9,7 +9,7 @@ import { axiosInstance } from "../../API/axios";
 import { ClipLoader } from "react-spinners";
 import { db } from "../../utility/firebase";
 import { useNavigate } from "react-router-dom";
-import { Type } from "../../utility/actiontype";
+import { Type } from "../../Utility/actiontype";
 
 function Payment() {
   const [{ basket, user }, dispatch] = useContext(DataContext);
@@ -74,7 +74,7 @@ function Payment() {
 
       setProcessing(false);
       navigate("/orders", { state: { msg: "you have placed new order" } });
-    } catch (error) {
+    } catch {
       setProcessing(false);
     }
   };

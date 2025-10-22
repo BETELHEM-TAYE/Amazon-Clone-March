@@ -13,7 +13,7 @@ function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setEror] = useState("");
-  const [{ user }, dispatch] = useContext(DataContext);
+  const [, dispatch] = useContext(DataContext);
   const [loading, setLoading] = useState({ signin: false, signup: false });
   const navigate = useNavigate();
   const navStateData = useLocation();

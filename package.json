@@ -22,6 +22,7 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "firebase": "^12.4.0",
+    "lint": "^0.8.19",
     "numeral": "^2.0.6",
     "prop-types": "^15.8.1",
     "react": "^19.2.0",

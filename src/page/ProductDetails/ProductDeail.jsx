@@ -18,7 +18,7 @@ function ProductDeail() {
         setProduct(res.data);
         setisLoading(false);
       })
-      .catch((err) => {
+      .catch(() => {
         setisLoading(false);
       });
   }, [productId]);

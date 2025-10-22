@@ -18,7 +18,7 @@ function Results() {
         setResult(res.data);
         setisLoading(false);
       })
-      .catch((err) => {
+      .catch(() => {
         setisLoading(false);
       });
   }, [categoryName]);

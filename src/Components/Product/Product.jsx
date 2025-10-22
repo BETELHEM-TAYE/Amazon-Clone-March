@@ -14,7 +14,7 @@ function Product() {
         setProduct(res.data);
         setisLoading(false);
       })
-      .catch((err) => {
+      .catch(() => {
         setisLoading(false);
       });
   }, []);
